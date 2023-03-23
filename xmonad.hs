@@ -62,7 +62,7 @@ myXmobarPP = def
 	, ppHiddenNoWindows 	= lowWhite . wrap " " ""
 	, ppUrgent 		= red . wrap (yellow "!") (yellow "!")
 	, ppOrder 		= \[ws, l, _, wins] -> [ws, l, wins] -- Show workspaces, layout name, window name
-	, ppExtras 		= [logTitles formatFocused formatUnfocused]
+	, ppExtras 		= [logTitles formatFocused formatUnfocused] -- Show title of all windows
 	}
       where
       	formatFocused 	= wrap (white    "[") (white    "]") . magenta . ppWindow
