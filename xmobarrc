@@ -9,14 +9,14 @@ Config  { overrideRedirect = False
 	    , iconRoot = "/home/emmanuel/.config/xmonad"
        	, commands = [ Run Cpu
                         [ "-L", "3"
-		            	, "-H", "50"
-		            	, "--low", "lightblue"
-		            	, "--normal", "green"
-		            	, "--high", "red"
-		            	] 10
-		                , Run Memory [ "--template", "Mem: <usedratio>%"] 10
-		                , Run Date "<fc=#8be9fd>%a %b %d %r</fc>" "date" 10
-		                , Run XMonadLog
+			, "-H", "50"
+		       	, "--low", "lightblue"
+	        	, "--normal", "green"
+	            	, "--high", "red"
+		       	] 10
+			, Run Memory [ "Mem: <usedratio>%"] 10
+			, Run Date "<fc=#8be9fd>%a %b %d %r</fc>" "date" 10
+			, Run XMonadLog
 		            	]
 	, sepChar = "%"
 	, alignSep = "}{"
