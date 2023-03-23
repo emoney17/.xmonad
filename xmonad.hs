@@ -8,8 +8,16 @@ import XMonad.Util.Ungrab
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.Magnifier
 
+-- Hooks
+import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.StatusBar
+import XMonad.Hooks.StatusBar.PP
+
 main :: IO ()
-main = xmonad $ def
+main = xmonad $ ewmhFullscreen $ ewmh $ xmobarProp $ myConfig
+
+myConfig = def
 	{ modMask = mod4Mask	-- Change mod key
 	, layoutHook = myLayout	-- Use custom layout
 	}
