@@ -1,10 +1,10 @@
 Config  { overrideRedirect = False
 	    -- , lowerOnStart = False
-        , font = "xft:monospace-9"
+        , font = "xft:Hack Nerd Font-9"
        	, bgColor = "#5f5f5f"
        	, fgColor = "#f8f8f2"
        	, position = Top
-        , textOffset = 1
+        , textOffset = -1
         , iconOffset = -1
 	    , iconRoot = "/home/emmanuel/.config/xmonad"
        	, commands = [ Run Cpu

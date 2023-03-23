@@ -24,10 +24,14 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
 
-myTerminal	= "alacritty"
-myBrowser	= "firefox"
-myEmacs		= "emacsclient -c -a 'emacs' --eval '(dashboard-open)'"
-myDmenu		= "dmenu_run -fn 'monospace-11'"
+myTerminal	     = "alacritty"
+myBrowser	     = "firefox"
+myEmacs		     = "emacsclient -c -a 'emacs' --eval '(dashboard-open)'"
+myDmenu		     = "dmenu_run -fn 'monospace-11'"
+
+myBorderWidth        = 2
+myNormalBorderColor  = "#666666"
+myFocusedBorderColor = "#c3e88d"
 
 main :: IO ()
 main = xmonad
@@ -45,15 +49,18 @@ myConfig = def
 	, manageHook = myManageHook -- Match on certain windows
 	, startupHook = myStartupHook
 	, terminal = myTerminal
+        , borderWidth = myBorderWidth
+        , normalBorderColor = myNormalBorderColor
+        , focusedBorderColor = myFocusedBorderColor
 	}
 	`additionalKeysP`
-	[ ("M-b", 		    spawn myBrowser)
+	[ ("M-b", 	        spawn myBrowser)
 	, ("M-<Return>", 	spawn myTerminal)
-	, ("M-e", 		    spawn myEmacs)
-	, ("M-d", 		    spawn myDmenu)
-	, ("M-q", 		    kill)
+	, ("M-e", 	        spawn myEmacs)
+	, ("M-d",	        spawn myDmenu)
+	, ("M-q", 		kill)
 	, ("M-S-r", 		spawn "xmonad --restart")
-	, ("M-s", 		    unGrab *> spawn "scrot -s")
+	, ("M-s", 		unGrab *> spawn "scrot -s")
 	, ("M-S-<Space>", 	sinkAll)
 	, ("M-S-e", 		io (exitWith ExitSuccess))
 	]
@@ -77,14 +84,14 @@ myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol
 
 myXmobarPP :: PP
 myXmobarPP = def
-	{ ppSep 		        = magenta " . "
+	{ ppSep 		    = magenta " . "
 	, ppTitleSanitize 	    = xmobarStrip
 	, ppCurrent 		    = wrap " " "" . xmobarBorder "Bottom" "#8be9fd" 2
-	, ppHidden 		        = white . wrap " " ""
-	, ppHiddenNoWindows 	= lowWhite . wrap " " ""
-	, ppUrgent 	        	= red . wrap (yellow "!") (yellow "!")
-	, ppOrder 	        	= \[ws, l, _, wins] -> [ws, l, wins] -- Show workspaces, layout name, window name
-	, ppExtras 	        	= [logTitles formatFocused formatUnfocused] -- Show title of all windows
+	, ppHidden 		    = white . wrap " " ""
+	, ppHiddenNoWindows 	    = lowWhite . wrap " " ""
+	, ppUrgent 	            = red . wrap (yellow "!") (yellow "!")
+	, ppOrder 	      	    = \[ws, l, _, wins] -> [ws, l, wins] -- Show workspaces, layout name, window name
+	, ppExtras 	       	    = [logTitles formatFocused formatUnfocused] -- Show title of all windows
 	}
       where
       	formatFocused 	= wrap (white    "[") (white    "]") . magenta . ppWindow
@@ -99,7 +106,7 @@ myXmobarPP = def
 	blue		= xmobarColor "#bd93f9" ""
 	white		= xmobarColor "#f8f8f2" ""
 	yellow		= xmobarColor "#f1fa8c" ""
-	red		    = xmobarColor "#ff5555" ""
+	red	        = xmobarColor "#ff5555" ""
 	lowWhite	= xmobarColor "#bbbbbb" ""
 
 myStartupHook :: X()
