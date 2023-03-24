@@ -27,7 +27,7 @@ import XMonad.Hooks.StatusBar.PP
 myTerminal	     = "alacritty"
 myBrowser	     = "firefox"
 myEmacs		     = "emacsclient -c -a 'emacs' --eval '(dashboard-open)'"
-myDmenu		     = "dmenu_run -fn 'monospace-11'"
+myDmenu		     = "dmenu_run -fn 'Hack Nerd Font-9'"
 
 myBorderWidth        = 2
 myNormalBorderColor  = "#666666"
@@ -41,7 +41,7 @@ main = xmonad
      $ myConfig
    where
      toggleStrutsKey :: XConfig Layout -> (KeyMask, KeySym)
-     toggleStrutsKey XConfig{ modMask = m } = (m, xK_v)
+     toggleStrutsKey XConfig{ modMask = m } = (m, xK_v) -- Toggle bar
 
 myConfig = def
 	{ modMask = mod4Mask	-- Change mod key
@@ -84,33 +84,18 @@ myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol
 
 myXmobarPP :: PP
 myXmobarPP = def
-	{ ppSep 		    = magenta " . "
+	{ ppSep =  "<fc=#666666> | </fc>"
 	, ppTitleSanitize 	    = xmobarStrip
-	, ppCurrent 		    = wrap " " "" . xmobarBorder "Bottom" "#8be9fd" 2
-	, ppHidden 		    = white . wrap " " ""
-	, ppHiddenNoWindows 	    = lowWhite . wrap " " ""
-	, ppUrgent 	            = red . wrap (yellow "!") (yellow "!")
-	, ppOrder 	      	    = \[ws, l, _, wins] -> [ws, l, wins] -- Show workspaces, layout name, window name
-	, ppExtras 	       	    = [logTitles formatFocused formatUnfocused] -- Show title of all windows
-	}
-      where
-      	formatFocused 	= wrap (white    "[") (white    "]") . magenta . ppWindow
-      	formatUnfocused = wrap (lowWhite "[") (lowWhite "]") . blue    . ppWindow
-
-	-- Windows should have *some* title which should not exceed a cetain length
-	ppWindow :: String -> String
-	ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) .shorten 30
-
-	blue, lowWhite, magenta, red, white, yellow :: String -> String
-	magenta		= xmobarColor "#ff79c6" ""
-	blue		= xmobarColor "#bd93f9" ""
-	white		= xmobarColor "#f8f8f2" ""
-	yellow		= xmobarColor "#f1fa8c" ""
-	red	        = xmobarColor "#ff5555" ""
-	lowWhite	= xmobarColor "#bbbbbb" ""
+	, ppCurrent 		    = xmobarColor "#c3e88d" "" . wrap " " "" . xmobarBorder "Bottom" "#c3e88d" 2
+        , ppVisible = xmobarColor "#c3e88d" "" . wrap " " " "
+        , ppHidden = xmobarColor "#82AAFF" "" . wrap " " ""
+        , ppHiddenNoWindows = xmobarColor "#F07178" "" . wrap " " ""
+        , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"
+        , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
+        }
 
 myStartupHook :: X()
 myStartupHook = do
+	spawnOnce "emacs --daemon &"
 	spawnOnce "picom &"
 	spawnOnce "nitrogen --restore &"
-	spawnOnce "emacs --daemon &"
