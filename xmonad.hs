@@ -89,7 +89,7 @@ myXmobarPP = def
 	{ ppSep =  "<fc=#666666> | </fc>"
 	, ppTitleSanitize 	    = xmobarStrip
 	, ppCurrent 		    = xmobarColor "#c3e88d" "" . wrap " " "" . xmobarBorder "Bottom" "#c3e88d" 2
-        , ppVisible = xmobarColor "#c3e88d" "" . wrap " " " "
+        , ppVisible = xmobarColor "#c3e88d" "" . wrap " " ""
         , ppHidden = xmobarColor "#82AAFF" "" . wrap " " ""
         , ppHiddenNoWindows = xmobarColor "#F07178" "" . wrap " " ""
         , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"
