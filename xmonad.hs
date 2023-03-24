@@ -28,6 +28,7 @@ myTerminal	     = "alacritty"
 myBrowser	     = "firefox"
 myEmacs		     = "emacsclient -c -a 'emacs' --eval '(dashboard-open)'"
 myDmenu		     = "dmenu_run -fn 'Hack Nerd Font-9'"
+myFiles              = "pcmanfm"
 
 myBorderWidth        = 2
 myNormalBorderColor  = "#666666"
@@ -58,6 +59,7 @@ myConfig = def
 	, ("M-<Return>", 	spawn myTerminal)
 	, ("M-e", 	        spawn myEmacs)
 	, ("M-d",	        spawn myDmenu)
+	, ("M-f",	        spawn myFiles)
 	, ("M-q", 		kill)
 	, ("M-S-r", 		spawn "xmonad --restart")
 	, ("M-s", 		unGrab *> spawn "scrot -s")
