@@ -26,8 +26,8 @@ import XMonad.Hooks.StatusBar.PP
 
 myTerminal	     = "alacritty"
 myBrowser	     = "firefox"
-myEmacs		     = "emacsclient -c -a 'emacs' --eval '(dashboard-open)'"
-myDmenu		     = "dmenu_run -fn 'Hack Nerd Font-9'"
+myEmacs		     = "emacsclient -c"
+myDmenu		     = "dmenu_run -fn 'Monospace-11'"
 myFiles              = "pcmanfm"
 
 myBorderWidth        = 2
@@ -98,6 +98,6 @@ myXmobarPP = def
 
 myStartupHook :: X()
 myStartupHook = do
-	spawnOnce "emacs --daemon &"
+	spawnOnce "/usr/bin/emacs --daemon"
 	spawnOnce "picom &"
-	spawnOnce "nitrogen --restore &"
+	spawnOnce "sh ~/.fehbg"

@@ -1,12 +1,12 @@
 Config  { overrideRedirect = False
-	    -- , lowerOnStart = False
-        , font = "xft:Hack Nerd Font-9"
+	, lowerOnStart = False
+        , font = "xft:Monospace-10"
        	, bgColor = "#000000"
        	, fgColor = "#ffffff"
        	, position = Top
         , textOffset = -1
         , iconOffset = -1
-	    , iconRoot = "/home/emmanuel/.config/xmonad"
+	, iconRoot = "/home/anon/.config/xmonad"
        	, commands = [ Run Cpu
                         [ "-L", "3"
 			, "-H", "50"
@@ -17,12 +17,11 @@ Config  { overrideRedirect = False
 			, Run Memory [ "Mem: <usedratio>%"] 10
 			, Run Date "<fc=#ee9a00>%a %b %d %r</fc>" "date" 10
 			, Run Com "uname" ["-sr"] "" 36000
-		    	, Run Com  "/home/emmanuel/.config/xmonad/packages.sh" [] "packages" 3600
+		    	, Run Com  "/home/anon/.config/xmonad/packages.sh" [] "packages" 3600
 		    	, Run XMonadLog
 		            	]
 	, sepChar = "%"
 	, alignSep = "}{"
 	, template = "<icon=haskell.xpm/>%XMonadLog% }{ <fc=#666666>%uname%</fc> | %cpu% | %memory% | %packages% | %date% "
-	-- , template = "%XMonadLog% }{ %cpu% | %memory% | %date% "
 	}
 
