@@ -24,7 +24,7 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
 
-myTerminal	     = "alacritty"
+myTerminal	     = "st"
 myBrowser	     = "firefox"
 myEmacs		     = "emacsclient -c"
 myDmenu		     = "dmenu_run -fn 'Monospace-11'"
@@ -98,6 +98,6 @@ myXmobarPP = def
 
 myStartupHook :: X()
 myStartupHook = do
-	spawnOnce "/usr/bin/emacs --daemon"
-	spawnOnce "picom &"
-	spawnOnce "sh ~/.fehbg"
+	spawn "/usr/bin/emacs --daemon"
+	spawn "picom &"
+	spawn "sh ~/.fehbg"
